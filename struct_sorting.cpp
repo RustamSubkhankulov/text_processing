@@ -62,25 +62,5 @@ void sort_strings(struct Text* text,
 
 //===========================================================================================
 
-void my_qsort(void *base_el, size_t n, size_t size, int (*cmp) (const void* , const void* )) {
 
-	char* base = (char*)base_el;
-	long left = 0;
-	long right = n - 1;
-
-	if (left >= right) return;
-
-	swap(&base[left], &base[((left + right)/(size * 2))*size], size);
-	int last = left;
-
-	for (int i = left + size; i <= right; i += size)
-		if (cmp((const void*)&base[i], (const void*)&base[right]) > 0) {
-			swap(&base[last], &base[i], size);
-			last += size;
-		}
-	swap(&base[left], &base[last], size);
-
-	my_qsort((void*)&base[left], last - size -left, size, cmp);
-	my_qsort((void*)&base[last + size], right - size - last, size, cmp);
-}
 
