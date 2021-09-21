@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 
 	assert(text.strings != NULL);
 
-	qsort((void*)text.strings, text.strings_number, sizeof(struct String*), direct_lexicographical_comparator);
+	qsort((void*)text.strings, text.strings_number, sizeof(struct String), direct_lexicographical_comparator);
 	printf("after\n");
 
 	//sort_strings(&text, direct_lexicographical_comparator); 
