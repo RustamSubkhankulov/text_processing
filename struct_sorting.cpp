@@ -62,25 +62,38 @@ void sort_strings(struct Text* text,
 
 //===========================================================================================
 
-void my_qsort(void *base_el, size_t n, size_t size, int (*cmp) (const void* , const void* )) {
+
+static long my_partition(char* base, long left, long right, int size, int (*cmp) (const void*, const void*)) {
+
+	char* pivot = base + right;
+	long i = left - size;
+
+	for (long j = left; j <= right - size; j += size) {
+
+		if (cmp((const void*)(base + j), (const void*)pivot) < 0) {
+
+			i += size;
+			swap(base + i, base + j, size);
+		}
+	}
+	swap(base + i + size, base + right, size);
+	return (i + size);
+}
+
+//===========================================================================================
+
+void my_qsort(void *base_el, int n, int size, int (*cmp) (const void* , const void* )) {
 
 	char* base = (char*)base_el;
 	long left = 0;
-	long right = n - 1;
+	long right = size * (n - 1);
 
-	if (left >= right) return;
+	if (n < 2) return;
 
-	swap(&base[left], &base[((left + right)/(size * 2))*size], size);
-	int last = left;
+	long pi = my_partition(base, left, right, size, cmp);
 
-	for (int i = left + size; i <= right; i += size)
-		if (cmp((const void*)&base[i], (const void*)&base[right]) > 0) {
-			swap(&base[last], &base[i], size);
-			last += size;
-		}
-	swap(&base[left], &base[last], size);
-
-	my_qsort((void*)&base[left], last - size -left, size, cmp);
-	my_qsort((void*)&base[last + size], right - size - last, size, cmp);
+	my_qsort((void*)base, (pi - left)/size, size, cmp);
+	my_qsort((void*)base, (right - pi)/size, size, cmp);
 }
+
 

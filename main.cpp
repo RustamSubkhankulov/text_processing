@@ -8,7 +8,7 @@
 #include "colored_output.h"
 #include "struct_sorting.h"
 
-//#define MYSORT
+#define MYSORT
 
 #ifdef MYSORT 
 	#define SORTING my_qsort
@@ -20,9 +20,11 @@
 
 int main(int argc, char *argv[]) { 
 
-	struct Text text = { 0 };
+	//assert(argv[1] != NULL);
 	//const char* filename = argv[1];
 	const char* filename = "hamlet.txt";
+
+	struct Text text = { 0 };
 
 	char* buf = text_init(filename, &text);
 

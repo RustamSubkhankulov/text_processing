@@ -9,4 +9,6 @@ void static swap(char* first, char* second, size_t size);
 void sort_strings(struct Text* text,
 	int (*comparator)(const void* first_struct, const void* second_struct));
 
-void my_qsort(void* base_el, size_t n, size_t size, int (*cmp) (const void* , const void*));
+void my_qsort(void* base_el, int n, int size, int (*cmp) (const void* , const void*));
+
+static long my_partition(char* base, long left, long right, int size, int (*cmp) (const void*, const void*));
