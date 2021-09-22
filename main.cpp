@@ -8,6 +8,16 @@
 #include "colored_output.h"
 #include "struct_sorting.h"
 
+//#define MYSORT
+
+#ifdef MYSORT 
+	#define SORTING my_qsort
+#endif
+
+#ifndef MYSORT
+	#define SORTING qsort
+#endif
+
 int main(int argc, char *argv[]) { 
 
 	struct Text text = { 0 };
@@ -18,17 +28,13 @@ int main(int argc, char *argv[]) {
 
 	print_strings(&text, "not_sorted.txt");
 
-	printf("Before\n");
-
 	assert(text.strings != NULL);
-
-	qsort((void*)text.strings, text.strings_number, sizeof(struct String), direct_lexicographical_comparator);
-	printf("after\n");
+	SORTING((void*)text.strings, text.strings_number, sizeof(struct String), direct_lexicographical_comparator);
 
 	//sort_strings(&text, direct_lexicographical_comparator); 
-	//print_strings(&text, "direct_sorted.txt");
+	print_strings(&text, "direct_sorted.txt");
 
-	//qsort((void*)text.strings, text.strings_number, sizeof(struct String*), reverse_lexicographical_comparator);
+	//SORTING((void*)text.strings, text.strings_number, sizeof(struct String), reverse_lexicographical_comparator);
 	
 	//sort_strings(&text, reverse_lexicographical_comparator);
 	//print_strings(&text, "reverse_sorted.txt");

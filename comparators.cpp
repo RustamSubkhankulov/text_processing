@@ -39,7 +39,9 @@ int direct_lexicographical_comparator(const void* first_struct, const void* seco
 
 			second_string_ptr++;
 		}
-		if (*first_string_ptr == *second_string_ptr) {
+		if (*first_string_ptr == *second_string_ptr\
+			                  && *first_string_ptr  != '\0'\
+			                  && *second_string_ptr != '\0') {
 
 			first_string_ptr++;
 			second_string_ptr++;
@@ -83,7 +85,9 @@ int reverse_lexicographical_comparator(const void* first_struct, const void* sec
 
 			second_string_end--;
 		}
-		if (*first_string_end == *second_string_end) {
+		if (*first_string_end  == *second_string_end\
+		  && first_string_end  !=  first_string_ptr \
+		  && second_string_end !=  second_string_ptr) {
 
 			first_string_end--;
 			second_string_end--;
