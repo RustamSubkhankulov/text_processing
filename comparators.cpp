@@ -5,17 +5,6 @@
 #include "text_processing.h"
 
 //=========================================================================================
-
-static int my_isalpha(char c) {
-
-	int ch = c - 0;
-
-	if (((ch >= 65) && (ch <= 90)) || ((ch >= 97) && (ch <= 122)))
-		return 1;
-	else
-		return 0;
-}
-
 int direct_lexicographical_comparator(const void* first_struct, const void* second_struct) {
 
 	assert(first_struct != NULL);
@@ -34,10 +23,12 @@ int direct_lexicographical_comparator(const void* first_struct, const void* seco
 		if (!isalpha((char)*first_string_ptr)) {
 
 			first_string_ptr++;
+			continue;
 		}
 		if (!isalpha((char)*second_string_ptr)) {
 
 			second_string_ptr++;
+			continue;
 		}
 		if (*first_string_ptr == *second_string_ptr\
 			                  && *first_string_ptr  != '\0'\
@@ -63,7 +54,7 @@ int direct_lexicographical_comparator(const void* first_struct, const void* seco
 //===========================================================================================
 int reverse_lexicographical_comparator(const void* first_struct, const void* second_struct) {
 
-	assert(first_struct != NULL);
+	assert(first_struct  != NULL);
 	assert(second_struct != NULL);
 
 	const struct String* first_struct_ptr  = (struct String*) first_struct;
@@ -101,5 +92,23 @@ int reverse_lexicographical_comparator(const void* first_struct, const void* sec
 		return ((*first_string_end - *second_string_end) < 0) ? -1 : 1;
 	}
 
+	return 0;
+}
+
+//=======================================================================================
+
+int number_of_string_comparator(const void* first_struct, const void* second_struct) {
+
+	assert(first_struct  != NULL);
+	assert(second_struct != NULL);
+
+
+	const struct String* first_struct_ptr  = (const struct String*) first_struct;
+	const struct String* second_struct_ptr = (const struct String*)second_struct;
+
+	long diff = first_struct_ptr->number - second_struct_ptr->number;
+
+	if (diff > 0) return  1;
+	if (diff < 0) return -1;
 	return 0;
 }

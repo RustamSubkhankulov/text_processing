@@ -93,7 +93,7 @@ void my_qsort(void *base_el, int n, int size, int (*cmp) (const void* , const vo
 	long pi = my_partition(base, left, right, size, cmp);
 
 	my_qsort((void*)base, (pi - left)/size, size, cmp);
-	my_qsort((void*)base, (right - pi)/size, size, cmp);
+	my_qsort((void*)(base + pi + size), (right - pi)/size, size, cmp);
 }
 
 

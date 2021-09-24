@@ -3,7 +3,7 @@
 #pragma once
 
 ///Definition for color reset for print_color();
-#define COLOR_RESET "\033[0;0m]"
+#define COLOR_RESET "\033[0;0m"
 
 ///Definition for red color for print_color();
 #define RED "\033[0;31m"

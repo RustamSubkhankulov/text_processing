@@ -10,8 +10,7 @@
 #include "text_processing.h"
 #include "error_processing.h"
 
-#define LOGGING
-
+//#define LOGGING
 //#define PRINTNUMBEROFLINE
 
 //=============================================================================
@@ -248,46 +247,6 @@ void clear_buf(char* buf) {
 	process_error(errno, __LINE__, __func__);
 }
 
-//============================================================================================
-//
-//char** string_pointers(struct Text* text) {
-//
-//	assert(text != NULL);
-//
-//	char** string_pointers = (char**)calloc(text->strings_number, sizeof(char*));
-//
-//	assert(string_pointers != NULL);
-//
-//	for (int strings_count = 0; strings_count < text->strings_number; strings_count++) {
-//
-//		*(string_pointers + strings_count) = text->strings[strings_count].data;
-//	}
-//	return string_pointers;
-//}
-
-////============================================================================================
-//
-//void print_text(char** strings, long strings_number, const char* filename) {
-//
-//	FILE* fp = fopen(filename, "wb");
-//	process_error(errno, __LINE__, __func__);
-//
-//	assert(strings != NULL);
-//
-//	for (int strings_count = 0; strings_count < strings_number; strings_count++)
-//		fprintf(fp, "%s\n", *(strings + strings_count));
-//
-//	fclose(fp);
-//	process_error(errno, __LINE__, __func__);
-//}
-
-////=============================================================================================
-//
-//void clear_string_pointers(char** strings) {
-//
-//	assert(strings != NULL);
-//	free(strings);
-//}
 
 //==============================================================================================
 
@@ -299,3 +258,5 @@ void clear_mem(struct Text* text, char* buf) {
 	clear_strings(text);
 	clear_buf(buf);
 }
+
+//==============================================================================================

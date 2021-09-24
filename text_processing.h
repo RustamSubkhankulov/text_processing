@@ -1,7 +1,6 @@
 #pragma once
-#include <stddef.h>
+
 #include <stdio.h>
-#include <stdbool.h>
 
 /// Structure contains string as char* and its length
 struct String {
@@ -99,4 +98,9 @@ void clear_strings(struct Text* text);
 /// @param char * pointer to the buffer
 void clear_buf(char* buf);
 
+///Clears allocated memory
+///
+/// Calls clear_strings and clear_buf
+/// @param struct Text* text pointer to text structure
+/// @param char* buf pointer to the buffer
 void clear_mem(struct Text* text, char* buf);
